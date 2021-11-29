@@ -1,0 +1,30 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'MyContractorUser' do
+  config = use_native_modules!
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+  use_react_native!(:path => config["reactNativePath"])
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  target 'MyContractorUserTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  #use_flipper!
+ # post_install do |installer|
+  #  flipper_post_install(installer)
+  #end
+end
+
+
+
